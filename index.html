@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="js/jquery.min.js"></script>
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<script>
+	$(document).ready(function(){
+	console.log("The Jquery Works");
+	$.ajax({
+      		type:'GET',
+      		url:'http://iligtas.ph/ems/displaygrade.php',
+      		dataType: "html",  
+      		data: {},
+      			success:function(data) {
+        			if(data) {   
+            				$('#divDisplay').html(data);
+        			} else {
+      				}
+    		}
+   	});		
+	$('#btnSubmit').click(function(){
+		$.ajax({
+      		type:'POST',
+      		url:'http://iligtas.ph/ems/addgrade.php',
+      		dataType: "html",  
+      		data: $('#frmAddGrade').serialize(),
+      			success:function(data) {
+        			if(data) {   
+            				alert(data);
+        			} else {
+      				}
+    		}
+   		});
+	});
+});
+</script>
+</head>
+<body>
+	<form id="frmAddGrade">
+		<input type="text" id='txtName' name='txtName' /><br/>
+		<input type="text" id="txtPrelim" name='txtPrelim' /><br/>
+		<input type="text" id="txtMidterm" name='txtMidterm' /><br/>
+		<input type="text" id="txtFinals" name='txtFinals' /><br/>
+	</form><br/>
+	<button id="btnSubmit">SUBMIT</button>
+	<div id="divDisplay">
+		<h1>Loading</h1>
+	</div>
+</body>
+</html>
